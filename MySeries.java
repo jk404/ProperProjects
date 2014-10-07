@@ -41,7 +41,7 @@ public class MySeries
                 System.err.println("Please enter values correctly!\n\n");
                 startThis();
             }
-        System.out.println("\nJK's Series for numbers between " + Start + " and " + End + ": \n");
+        System.out.println("\nJK's Series for numbers including & between " + Start + " and " + End + ": \n");
         doThis(Start, End);
         scan.close();
     }
@@ -49,25 +49,30 @@ public class MySeries
     public static void doThis(int start, int end)
     {
         int seriesNumCount=0;
+        String seperator=",";
     	
     	OuterLoop:
         for ( int i = start; i<=end;)
         {
-            System.out.print(i + ",");
+        	if (i==end)
+            {
+            	seperator="";
+            }
+        	System.out.print(i + seperator);
             i++;
             seriesNumCount++;
             for(int x = start; x<i;)
             {
-                if (i > end)
-                    {
-                        break OuterLoop;
-                    }
-                System.out.print(x + ",");
-                x++;
-                seriesNumCount++;
+               if (i > end)
+               {
+            	   break OuterLoop;
+               }
+               System.out.print(x + seperator);
+               x++;
+               seriesNumCount++;
             }
         }
-        System.out.println("\n\n--- JK's Series for numbers between " + start + " and " + end 
-        		+ " ---\n--- Total Numbers in Series: " + seriesNumCount + " ---");
+        System.out.println("\n\n--- JK's Series for numbers including & between " + start + " and " + end 
+        					+ " ---\n--- Total Numbers in Series: " + seriesNumCount + " ---");
     }
 }
