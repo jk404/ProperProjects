@@ -71,11 +71,26 @@ public class MySeries
     public static void doThis(int start, int end)
     {
         int seriesNumCount=0;
+        int inputRange=start;
         int inputRangeCount=(end-start)+1;
         String seperator=",";
     	
-        System.out.println("\nThe range of numbers is: " + inputRangeCount);
-        System.out.println("JK's Series for numbers from " + start + " to " + end + ": \n");
+        System.out.print("\nThe range of numbers is: ");
+        
+        while (inputRange <= end)
+        {
+        	if (inputRange == end)
+        	{
+        		System.out.println(inputRange);
+        		break;
+        	}
+        	System.out.print(inputRange + ",");
+        	inputRange++;
+        }
+        
+        System.out.println("\nTotal numbers in range is: " + inputRangeCount);
+        
+        System.out.println("\nJK's Series for numbers from " + start + " to " + end + ": \n");
         
         OuterLoop:
         for ( int i = start; i<=end;)
