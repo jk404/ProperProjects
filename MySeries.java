@@ -4,22 +4,44 @@
 
 import java.util.Scanner;
 
+@SuppressWarnings("unused")
 public class MySeries 
 {
     static int count=0;
+    static boolean rerun=true;
+    
+    static Scanner scan;
     
     public static void main(String[] args) 
     {
-        System.err.println("\tWelcome to JK's Series!!\n\n");
-        startThis();
+    	System.err.println("\tWelcome to JK's Series!!\n\n");
+    	do
+        {
+        	startThis();
+        	System.out.println("\n\nDo you want to run it again?");
+        	scan = new Scanner (System.in);
+        	String RERUN = scan.nextLine();
+        	if(RERUN.equalsIgnoreCase("y"))
+        	{
+        		rerun=true;
+        	}
+        	else 
+        	{
+        		rerun=false;
+        		System.err.println("Thankyou for using JK's Series!!");
+        		scan.close();
+        	}
+        	
+        } while (rerun);
+        
     }
     
-    @SuppressWarnings("unused")
+
 	public static void startThis()
     {
-        Scanner scan = new Scanner (System.in);
+        scan = new Scanner (System.in);
         
-        System.out.println("Enter Starting number of JK's Series: ");
+        System.out.println("\nEnter Starting number of JK's Series: ");
         int Start = scan.nextInt();
         
         System.out.println("\nEnter Ending number of JK's Series: ");
@@ -41,17 +63,21 @@ public class MySeries
                 System.err.println("Please enter values correctly!\n\n");
                 startThis();
             }
-        System.out.println("\nJK's Series for numbers including & between " + Start + " and " + End + ": \n");
+        
         doThis(Start, End);
-        scan.close();
+        
     }
     
     public static void doThis(int start, int end)
     {
         int seriesNumCount=0;
+        int inputRangeCount=(end-start)+1;
         String seperator=",";
     	
-    	OuterLoop:
+        System.out.println("\nThe range of numbers is: " + inputRangeCount);
+        System.out.println("JK's Series for numbers from " + start + " to " + end + ": \n");
+        
+        OuterLoop:
         for ( int i = start; i<=end;)
         {
         	if (i==end)
@@ -61,6 +87,7 @@ public class MySeries
         	System.out.print(i + seperator);
             i++;
             seriesNumCount++;
+            InnerLoop:
             for(int x = start; x<i;)
             {
                if (i > end)
@@ -72,7 +99,7 @@ public class MySeries
                seriesNumCount++;
             }
         }
-        System.out.println("\n\n--- JK's Series for numbers including & between " + start + " and " + end 
+        System.out.println("\n\n--- JK's Series for numbers from " + start + " to " + end 
         					+ " ---\n--- Total Numbers in Series: " + seriesNumCount + " ---");
     }
 }
